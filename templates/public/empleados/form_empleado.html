@@ -1,0 +1,416 @@
+{% extends 'public/base_cpanel.html' %}
+<!--Cambiando el title-->
+{% block title %}AMRV | Registrar Empleado{% endblock %}
+<!---->
+{% block customCSS %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename ='assets/css/file.css') }}" />
+  <style>
+    /* Método CSS: Convierte el texto a mayúsculas */
+    input[type="text1"] {
+        text-transform: uppercase;
+    }
+</style>
+{% endblock %}
+
+<!--Inicio del block-->
+{% block body %}
+<div class="card" style="border-radius: 0px !important">
+  <div class="row justify-content-center mb-2">
+    <div class="col-md-12">
+      <h3 class="text-center mt-5 mb-3">REGISTRAR NUEVO EMPLEADO</h3>
+      <hr />
+    </div>
+  </div>
+
+  <div class="row justify-content-center mb-2">
+    <div class="col-md-10">
+      <form
+        class="form-horizontal mx-auto"
+        method="POST"
+        action="/form-registrar-empleado"
+        autocomplete="off"
+        enctype="multipart/form-data">
+        <div class="card-body">
+          <div class="row mt-3">
+            <div class="col-md-4">
+              <label for="nombre_empleado" class="form-label">
+                Nombre del empleado
+              </label>
+              <input
+                type="text1"
+                name="nombre_empleado"
+                class="form-control"
+                required />
+            </div>
+            <div class="col-md-4">
+              <label for="apellido_empleado" class="form-label">
+                Apellido paterno
+              </label>
+              <input
+                class="form-control"
+                type="text1"
+                name="apellido_empleado"
+                required />
+            </div>
+            <div class="col-md-4">
+              <label for="apellido_materno" class="form-label">
+                Apellido materno
+              </label>
+              <input
+                class="form-control"
+                type="text1"
+                name="apellido_materno"
+                required />
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-md-6">
+              <label for="sexo_empleado" class="form-label">
+                Sexo del empleado
+              </label>
+              <select
+                class="form-select"
+                name="sexo_empleado"
+                aria-label="Default select example">
+                <option selected>Seleccione</option>
+                <option value="1">Masculino</option>
+                <option value="2">Femenino</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+            <label for="telefono_empleado" class ="form-label">
+              Número de Teléfono:
+            </label></br>
+            <input
+            class="form-control"
+            type="telefono" 
+            id="telefono_empleado" 
+            name="telefono_empleado" 
+            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" 
+            placeholder="Ejemplo: 123-456-7890" 
+            required oninput="formatPhoneNumber(event)" />
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-md-6">
+              <label for="email_empleado" class="form-label">
+                Email del empleado
+              </label>
+              <input
+                class="form-control"
+                type="email"
+                name="email_empleado"
+                required />
+            </div>
+            <div class="col-md-6">
+              <label for="profesion_empleado" class="form-label">
+                Profesión del empleado
+              </label>
+              <input
+                class="form-control"
+                type="text1"
+                name="profesion_empleado"
+                required />
+            </div>
+          </div>
+
+          <div class="row mt-3">
+            <div class="col-md-4">
+            <label for="entrada" classs="form-label">
+              Hora de Entrada:
+            </label>
+            <input 
+            class="form-control"
+            type="time" 
+            id="entrada" 
+            name="entrada" required>
+            </div>
+            
+            <div class="col-md-4">
+            <label for="salida" class="form-label">
+              Hora de Salida:
+            </label>
+            <input
+            class="form-control"
+            type="time"
+            id="salida"
+            name="salida"
+            required>
+            </div>
+            <div class="col-md-4">
+              <label for="curp" class="form-label">
+                curp
+              </label>
+              <input
+                class="form-control"
+                type="text1"
+                name="curp"
+                id="curp"
+                maxlength="18"
+                required />
+            </div>
+          </div>
+
+
+          <div class="row mt-3">
+            <div class="col-md-4">
+              <label for="rfc" class="form-label">
+                rfc
+              </label>
+              <input
+                class="form-control"
+                type="text1"
+                name="rfc"
+                id="rfc"
+                maxlength="13"
+                required />
+            </div>
+            <div class="col-md-4">
+              <label for="num_personal" class="form-label">
+                número de personal
+              </label>
+              <input
+                class="form-control"
+                type="text"
+                name="num_personal"
+                id="num_personal"
+                required />
+            </div>
+            <div class="col-md-4">
+              <label for="num_plaza" class="form-label">
+                Número de Plaza:
+              </label>
+              <input 
+              class="form-control"
+              type="text" 
+              id="num_plaza" 
+              name="num_plaza" 
+              required/>
+             </div>
+          </div>
+          <div class="row mt-3">
+          <div class="col-md-4">
+            <label for="categoria" class="form-label">
+              Categoria:
+            </label>
+            <input 
+            class="form-control"
+            type="text" 
+            id="categoria" 
+            name="categoria" 
+            required/>
+            </div>
+            <div class="col-md-4">
+              <label for="fecha_ingreso" class="form-label">
+                  Fecha de Ingreso:
+              </label>
+              <input 
+              class="form-control" 
+              type="date" 
+              id="fecha_ingreso" 
+              name="fecha_ingreso" 
+              required/>
+              </div>
+              <div class="col-md-4">
+                <label for="antiguedad" class="form-label">
+                Antigüedad:
+                </label>
+                <input 
+                class="form-control" 
+                type="text" 
+                id="antiguedad" 
+                name="antiguedad" 
+                required/>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-md-4">
+                  <label for="nss" class="form-label">
+                  NSS:
+                  </label>
+                  <input 
+                  class="form-control" 
+                  type="text" 
+                  id="nss" 
+                  name="nss" 
+                  maxlength="11"
+                  required/>
+                </div>
+                <div class="col-md-4">
+                    <label for="control_asistencia" class="form-label">
+                    Control de Asistencia:
+                    </label>
+                    <input 
+                    class="form-control" 
+                    type="text" 
+                    id="control_asistencia" 
+                    name="control_asistencia" 
+                    required/>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="tipo_empleado" class="form-label">
+                      Puesto del empleado
+                    </label>
+                    <select
+                      class="form-select"
+                      name="tipo_empleado"
+                      aria-label="Default select example">
+                      <option selected>Seleccione</option>
+                      <option value="DOCENTE">DOCENTE</option>
+                      <option value="ADMINISTRATIVO">ADMINISTRATIVO</option>
+                      <option value="INTERINATO">INTERINATO</option>
+                    </select>
+                  </div>
+              </div>  
+             
+            </div>
+            <h3>Domicilio Particular</h3>
+    
+          <div class="row mt-2">
+            <div class="col-md-8">
+            <label for="calle" class="form-label">
+            Calle:
+            </label>
+            <input 
+            class="form-control" 
+            type="text1" 
+            id="calle" 
+            name="calle" 
+            required/>
+            </div>
+            <div class="col-md-4">
+              <label for="num" class="form-label">
+              Número:
+              </label>
+              <input 
+              class="form-control" 
+              type="text" 
+              id="num" 
+              name="num" 
+              required/>
+              </div>
+          </div>
+
+          <div class="row mt-3">
+            <div class="col-md-4">
+            <label for="colonia" class="form-label">
+            Colonia:
+            </label>
+            <input 
+            class="form-control" 
+            type="text1" 
+            id="colonia" 
+            name="colonia" 
+            required/>
+            </div>
+            <div class="col-md-4">
+              <label for="municipio" class="form-label">
+              Municipio:
+              </label>
+              <input 
+              class="form-control" 
+              type="text1" 
+              id="municipio" 
+              name="municipio" 
+              required/>
+              </div>
+              <div class="col-md-4">
+                <label for="estado" class="form-label">
+                Estado:
+                </label>
+                <input 
+                class="form-control" 
+                type="text1" 
+                id="estado" 
+                name="estado" 
+                required/>
+                </div>
+          </div>
+
+          <div class = "row mt-3">
+          </div>
+        <div class="row mt-3">
+          <div class="col-md-4">
+          <label for="cp" class="form-label">
+            C.P.:
+          </label>
+          <input 
+          class="form-control" 
+          type="text"
+          id="cp" 
+          name="cp" 
+          required>
+          </div>
+          <div class="col-md-4">
+            <label for="tipo_sangre" class="form-label">
+              Tipo de Sangre:
+            </label>
+            <input 
+            class="form-control" 
+            type="text1" 
+            id="tipo_sangre" 
+            name="tipo_sangre" 
+            required>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+          <label for="observaciones" class="form-label">
+          Observaciones Médicas:
+          </label><br>
+         <textarea 
+          class="form-control"
+          id="observaciones" 
+          name="observaciones" 
+          rows="4" cols="50" 
+          required>
+        </textarea>
+          </div>
+        </div>
+
+          <div row mt-2>
+            <div class="col-md-6">
+              <label for="" class="form-label">
+                CARGAR IMAGEN DEL EMPLEADO
+              </label>
+              <div class="avatar-upload">
+                <div class="avatar-edit">
+                  <input
+                    type="file"
+                    name="foto_empleado"
+                    id="imageUpload"
+                    accept=".png, .jpg, .jpeg" />
+                  <label for="imageUpload"><i class="bi bi-pen"></i></label>
+                </div>
+                <div class="avatar-preview">
+                  <div class="avatar-preview">
+                    {% set url_avatar= url_for('static', filename
+                    ='assets/img/avatar.png') %}
+                    <div
+                      id="imagePreview"
+                      style="background-image: url('{{ url_avatar }}')"></div>
+                  </div>
+                 </div> 
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3 mt-4 text-center">
+            <button type="submit" class="btn rounded-pill btn-primary">
+              Guardar registro ahora
+              <i class="bi bi-arrow-clockwise"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block customJS %}
+<script src="{{ url_for('static', filename ='assets/customJS/file.js') }}"></script>
+{% endblock %}

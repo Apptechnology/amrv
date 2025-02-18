@@ -1,0 +1,268 @@
+{% extends 'public/base_cpanel.html' %}
+<!--Cambiando el title-->
+{% block title %}AMRV | Registrar Empleado{% endblock %}
+<!---->
+{% block customCSS %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename ='assets/css/file.css') }}" />
+{% endblock %}
+
+<!--Inicio del block-->
+{% block body %}
+<!---->
+{% if (detalle_empleado|length) %}
+<div class="card" style="border-radius: 0px !important">
+  <div class="row justify-content-center mb-2">
+    <div class="col-md-12">
+      <h3 class="text-center mt-5 mb-3">
+        <a href="/lista-de-empleados">
+          <i class="bi bi-arrow-left-circle"></i>
+        </a>
+        INFORMACIÓN DEL EMPLEADO
+      </h3>
+      <hr />
+    </div>
+  </div>
+
+  <div class="row justify-content-center mb-3">
+    <div class="col-md-10">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-4">
+            <label for="nombre_empleado" class="form-label">
+              Nombre del empleado
+            </label>
+            <br />
+            {{ detalle_empleado.nombre_empleado}}
+          </div>
+          <div class="col-md-4">
+            <label for="apellido_empleado" class="form-label">
+              Apellido paterno
+            </label>
+            <br />
+            {{ detalle_empleado.apellido_empleado}}
+          </div>
+          <div class="col-md-4">
+            <label for="apellido_materno" class="form-label">
+              Apellido materno
+            </label>
+            <br />
+            {{ detalle_empleado.apellido_materno}}
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-md-4">
+            <label for="sexo_empleado" class="form-label">
+              Sexo del empleado
+            </label>
+            <br />
+            {{ detalle_empleado.sexo_empleado}}
+          </div>
+          <div class="col-md-4">
+            <label for="telefono_empleado" class="form-label">
+              Telefono del empleado
+            </label>
+            <br />
+            {{ detalle_empleado.telefono_empleado}}
+          </div>
+          <div class="col-md-4">
+            <label for="email_empleado" class="form-label">
+              Email del empleado
+            </label>
+            <br />
+            {{ detalle_empleado.email_empleado}}
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-4">
+            <label for="profesion_empleado" class="form-label">
+              Profesión del empleado
+            </label>
+            <br />
+            {{ detalle_empleado.profesion_empleado}}
+          </div>
+          <div class="col-md-4">
+            <label for="entrada" class="form-label">
+              entrada
+            </label>
+            <br />
+            {{(detalle_empleado.entrada)}}
+          </div>
+          <div class="col-md-4">
+            <label for="salida" class="form-label">
+              salida
+            </label>
+            <br />
+            {{(detalle_empleado.salida)}}
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-md-4">
+            <label for="curp" class="form-label">
+              CURP
+            </label>
+            <br />
+            {{ detalle_empleado.curp }}
+          </div>
+          <div class="col-md-4">
+            <label for="rfc" class="form-label">
+              RFC
+            </label>
+            <br />
+            {{ detalle_empleado.rfc}}
+          </div>
+          <div class="col-md-4">
+            <label for="num_personal" class="form-label">
+              Número de Personal
+            </label>
+            <br />
+            {{ detalle_empleado.num_personal}}
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-md-4">
+            <label for="num_plaza" class="form-label">
+              Número de Plaza
+            </label>
+            <br />
+            {{ detalle_empleado.num_plaza }}
+          </div>
+          <div class="col-md-4">
+            <label for="categoria" class="form-label">
+              Categoría
+            </label>
+            <br />
+            {{ detalle_empleado.categoria}}
+          </div>
+          <div class="col-md-4">
+            <label for="fecha_ingreso" class="form-label">
+              Fecha de Ingreso
+            </label>
+            <br />
+            {{ detalle_empleado.fecha_ingreso}}
+          </div>
+        </div>
+
+
+        <div class="row mt-3">
+          <div class="col-md-4">
+            <label for="antiguedad" class="form-label">
+              Antigüedad
+            </label>
+            <br />
+            {{ detalle_empleado.antiguedad }}
+          </div>
+          <div class="col-md-4">
+            <label for="nss" class="form-label">
+              NSS
+            </label>
+            <br />
+            {{ detalle_empleado.nss}}
+          </div>
+          <div class="col-md-4">
+            <label for="control_asistencia" class="form-label">
+              Control de Asistencia
+            </label>
+            <br />
+            {{ detalle_empleado.control_asistencia}}
+          </div>
+          <div class="col-md-4">
+            <label for="tipo_empleado" class="form-label">
+              Tipo Empleado
+            </label>
+            <br />
+            {{ detalle_empleado.tipo_empleado}}
+          </div>
+        </div>
+        <h4 class="text-center mt-5 mb-3">DOMICILIO PARTICULAR </h4>
+          
+          <div class="row mt-2">
+            <div class="col-md-8">
+              <label for="calle" class="form-label">
+                calle
+              </label>
+              <br />
+              {{ detalle_empleado.calle }}
+            </div>
+            <div class="col-md-4">
+              <label for="num" class="form-label">
+                Numero
+              </label>
+              <br />
+              {{ detalle_empleado.num}}
+            </div>
+          </div>
+
+          <div class="row mt-3">
+            <div class="col-md-4">
+              <label for="colonia" class="form-label">
+                colonia
+              </label>
+              <br />
+              {{ detalle_empleado.colonia }}
+            </div>
+            <div class="col-md-4">
+              <label for="municipio" class="form-label">
+                municipio
+              </label>
+              <br />
+              {{ detalle_empleado.municipio}}
+            </div>
+            <div class="col-md-4">
+              <label for="estado" class="form-label">
+                estado
+              </label>
+              <br />
+              {{ detalle_empleado.estado}}
+            </div>
+          </div>
+
+          <div class="row mt-3">
+            <div class="col-md-4">
+              <label for="cp" class="form-label">
+                c.p.
+              </label>
+              <br />
+              {{ detalle_empleado.cp }}
+            </div>
+            <div class="col-md-4">
+              <label for="tipo_sangre" class="form-label">
+                tipo de sangre
+              </label>
+              <br />
+              {{ detalle_empleado.tipo_sangre}}
+            </div>
+            </div>  
+            <div class="row">
+            <div class="col-md-8">
+              <label for="observaciones" class="form-label">
+                observaciones
+              </label>
+              <br />
+              {{ detalle_empleado.observaciones}}
+            </div>
+            <div class="col-md-4">
+              <label for="" class="form-label"> FOTO DEL EMPLEADO </label>
+              <br />
+            <br />
+            <img
+              style="width: 200px"
+              src="/static/fotos_empleados/{{ detalle_empleado.foto_empleado }}"
+              alt="imagen-empleado" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% else %}
+<h2 class="text-center">
+  No existe el Empleado 😭
+  <hr />
+</h2>
+{% endif %} {% endblock %}
