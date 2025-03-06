@@ -1,5 +1,9 @@
-- Servidor: localhost:3306
--- Tiempo de generación: 19-02-2025 a las 16:52:44
+-- phpMyAdmin SQL Dump
+-- version 4.8.5
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: localhost:3306
+-- Tiempo de generación: 06-03-2025 a las 18:39:57
 -- Versión del servidor: 5.7.25
 -- Versión de PHP: 7.3.1
 
@@ -37,6 +41,7 @@ CREATE TABLE `tbl_empleados` (
   `nss` varchar(15) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `control_asistencia` varchar(10) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `tipo_empleado` varchar(20) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `otro_empleado` varchar(50) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `calle` varchar(50) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `num` varchar(10) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
   `colonia` varchar(50) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
@@ -54,12 +59,8 @@ CREATE TABLE `tbl_empleados` (
 -- Volcado de datos para la tabla `tbl_empleados`
 --
 
-INSERT INTO `tbl_empleados` (`id_empleado`, `nombre_empleado`, `apellido_empleado`, `apellido_materno`, `sexo_empleado`, `telefono_empleado`, `email_empleado`, `profesion_empleado`, `entrada`, `salida`, `curp`, `rfc`, `num_personal`, `num_plaza`, `categoria`, `fecha_ingreso`, `antiguedad`, `nss`, `control_asistencia`, `tipo_empleado`, `calle`, `num`, `colonia`, `municipio`, `estado`, `cp`, `tipo_sangre`, `observaciones`, `foto_empleado`, `salario_empleado`, `fecha_registro`) VALUES
-(9, 'EDGAR GUSTAVO', 'ORTIZ', 'LOPEZ', 1, '2284682848', 'edgar@mail.com', 'LI', '09:00:00', '17:00:00', 'asdasdaer3242342', 'asdadsasd344', '12', '21', '1231', '2025-02-18', '12', '1231313', '123123132', 'DOCENTE', 'asdaasfasdedasdqweeqwdqweqwe', '12', 'zxczzce', 'adsada', 'asdad', '91000', 'AB+', 'gordura', 'ef5be88e333d4b0fac02f46e6c37ba1f13b1b6deba2f4c3c8d1ee436caf1027b.png', 200, '2025-02-13 00:20:27'),
-(22, 'RAFAEL', 'ARCOS', 'MORALES', 1, '2284682848', 'facturacion@setditsx.com.mx', 'SSFSD', '11:31:00', '17:31:00', 'SDFSDFSFF', 'QWEQWEQ', 'QWEQWEQWE', 'EWQEQ', 'EQWE', '2025-02-13', 'QWEQ', 'QWEQWEQEW', '12', 'ADMINISTRATIVO', 'sol', '122', 'fuentes', 'xalapa', 'Veracruz de Ignacio de la Llave', '91080', 'B+', 'ninguna', '6e0f09f1701d446fa1e68fea6067a1ae2d83edbe8a7a496d83b27378329c8781.png', 342342, '2025-02-13 14:03:14'),
-(32, 'CLODOALDO', 'BAEZ', 'HERRERA', 1, '23423423423', 'contacto@setditsx.com.mx', 'IC', '07:00:00', '15:00:00', 'QDSASDX234312XWQE', 'CSDQ123DSASD3', '123', '12', '123', '2025-01-14', '2', '2312312312', '12', 'DOCENTE', 'CIRCUITO ARCO SUR', '5t', 'RESERVA TERRITORIAL', 'Xalapa', 'Veracruz de Ignacio de la Llave', '91098', 'O+', '        NINGUNA', '710f9ba16216458fb745c0670094e190bcc6c7a22244401cb7e8b958d0517ed6.png', 21312312, '2025-02-14 13:39:48'),
-(34, 'FELIPE MARTIN', 'SANCHEZ', 'CORTES', 1, '2281874421', 'facturacion@setditsx.com.mx', 'MSC', '07:00:00', '15:00:00', 'SACF750205HVZNRL13', 'SACF750205V53', '186', 'ASC-23', 'ASOCIADO C', '2003-10-20', '21', '65961231231', '186', 'ADMINISTRATIVO', 'CIRCUITO ARCO SUR', 'S/N', 'RESERVA TERRITORIAL', 'Xalapa', 'Veracruz de Ignacio de la Llave', '91094', 'a+', '    ninguna', '0e3d52128293451c8b9a25603604756f656b1765d7c84122aa0baf99b61f6551.png', 200000, '2025-02-16 04:02:53'),
-(35, 'juanito', 'perez', 'gonzalez', 1, '228-187-4421', 'juanito@gmail.com', 'ISC', '07:00:00', '15:00:00', 'ERWEQWEQWEQWEQWEQW', 'QWEQWEQWEQW', '123', '123', '123', '2015-06-28', '23', '12312312312', '123', 'DOCENTE', '1QEWQW', '122', 'RESERVA TERRITORIAL', 'Xalapa', 'Veracruz de Ignacio de la Llave', '91094', 'AB+', '        ASDASDAS', 'd0c96743cbea4834956b7b37fdcdde210b1e1cba109640dba4ca4ab21d0b35b8.png', NULL, '2025-02-17 20:44:46');
+INSERT INTO `tbl_empleados` (`id_empleado`, `nombre_empleado`, `apellido_empleado`, `apellido_materno`, `sexo_empleado`, `telefono_empleado`, `email_empleado`, `profesion_empleado`, `entrada`, `salida`, `curp`, `rfc`, `num_personal`, `num_plaza`, `categoria`, `fecha_ingreso`, `antiguedad`, `nss`, `control_asistencia`, `tipo_empleado`, `otro_empleado`, `calle`, `num`, `colonia`, `municipio`, `estado`, `cp`, `tipo_sangre`, `observaciones`, `foto_empleado`, `salario_empleado`, `fecha_registro`) VALUES
+(22, 'RAFAEL', 'ARCOS', 'MORALES', 1, '228-187-4421', 'facturacion@setditsx.com.mx', 'SSFSD', '23:00:00', '17:31:00', 'SDFSDFSFF', 'QWEQWEQ', 'QWEQWEQWE', 'EWQEQ', 'EQWE', '2025-02-13', 'QWEQ', 'QWEQWEQEW', '12', 'Otro', 'Aviador ', 'sol', '122', 'fuentes', 'xalapa', 'Veracruz de Ignacio de la Llave', '91080', 'B+', 'ninguna', '6e0f09f1701d446fa1e68fea6067a1ae2d83edbe8a7a496d83b27378329c8781.png', 342342, '2025-02-13 14:03:14');
 
 -- --------------------------------------------------------
 
@@ -106,7 +107,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `tbl_empleados`
 --
 ALTER TABLE `tbl_empleados`
-  MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT de la tabla `users`

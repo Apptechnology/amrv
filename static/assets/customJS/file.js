@@ -51,3 +51,30 @@ function formatPhoneNumber(event) {
       input.value = value;
   }
 }
+/**
+ *
+ * Formato de opcion "Otros"
+ */
+function mostrarOtroCampo() {
+  var selectBox = document.getElementById("tipo_empleado");
+  var otroDiv = document.getElementById("otro_empleado_div");
+  if (selectBox === "Otro") {
+      otroDiv.style.display = "block";
+  } else {
+      otroDiv.style.display = "none";
+  }
+}
+
+/**
+ *
+ * Formato de opcion "Otros_update"
+ */
+function mostrarOtroCampoUpdate() {
+  var selectBox = document.getElementById("tipo_empleado");
+  var otroDiv = document.getElementById("otro_empleado_div");
+  if (selectBox.value === "Otro") {
+    otroDiv.style.display = "block";
+  } else {
+    otroDiv.style.display = "none";
+  }
+}

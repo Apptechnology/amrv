@@ -103,6 +103,9 @@
                 type="text"
                 name="telefono_empleado"
                 value="{{ respuestaEmpleado.telefono_empleado }}"
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" 
+                placeholder="Ejemplo: 123-456-7890" 
+ 
                 required />
             </div>
           </div>
@@ -281,15 +284,24 @@
                     </label>
                     <select
                       class="form-select"
+                      id="tipo_empleado"
                       name="tipo_empleado"
-                      aria-label="Default select example">
+                      aria-label="Default select example"
+                      required onchange="mostrarOtroCampoUpdate()">
                       <option selected>{{respuestaEmpleado.tipo_empleado}}</option>
-                      <option value="DOCENTE">DOCENTE</option>
-                      <option value="ADMINISTRATIVO">ADMINISTRATIVO</option>
-                      <option value="INTERINATO">INTERINATO</option>
+                      <option value="DOCENTE(Base)">DOCENTE(Base)</option>
+                      <option value="ADMINISTRATIVO(Base)">ADMINISTRATIVO(Base)</option>
+                      <option value="DOCENTE(Interinato)">DOCENTE(Interinato)</option>
+                      <option value="ADMINISTRATIVO(Interinato)">ADMINISTRATIVO(Interinato)</option>
+                      <option value="Otro">OTRO (Especifique)</option>
                     </select>
-              </div>  
-              </div>
+                  </div>
+              </div> 
+           <div class="col-md-4" id="otro_empleado_div" style="display:none ;">
+                <label for="otro_empleado" class="form-label">Especifique el tipo de nombramiento:</label>
+                <input type="text" class="form-control" id="otro_empleado" name="otro_empleado" value = "{{ respuestaEmpleado.otro_empleado }}" />
+            </div>
+            
         </div>
             <h3>Domicilio Particular</h3>
     
@@ -389,7 +401,7 @@
         </div>
           <div class="col-md-12">
           <label for="observaciones" class="form-label">
-          Observaciones Médicas:
+          Observaciones:
           </label><br>
          <input
           class="form-control" 

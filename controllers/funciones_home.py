@@ -23,19 +23,18 @@ def procesar_form_empleado(dataForm, foto_perfil):
    # salario_sin_puntos = re.sub('[^0-9]+', '', dataForm['salario_empleado'])
     # convertir salario a INT
     #salario_entero = int(salario_sin_puntos)
-
     result_foto_perfil = procesar_imagen_perfil(foto_perfil)
     try:
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as cursor:
 
-                sql = "INSERT INTO tbl_empleados (nombre_empleado, apellido_empleado, apellido_materno, sexo_empleado, telefono_empleado, email_empleado, profesion_empleado, entrada, salida, curp, rfc, num_personal, num_plaza, categoria, fecha_ingreso, antiguedad, nss, control_asistencia, tipo_empleado, calle, num, colonia, municipio, estado, cp, tipo_sangre, observaciones, foto_empleado) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+                sql = "INSERT INTO tbl_empleados (nombre_empleado, apellido_empleado, apellido_materno, sexo_empleado, telefono_empleado, email_empleado, profesion_empleado, entrada, salida, curp, rfc, num_personal, num_plaza, categoria, fecha_ingreso, antiguedad, nss, control_asistencia, tipo_empleado, otro_empleado, calle, num, colonia, municipio, estado, cp, tipo_sangre, observaciones, foto_empleado) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 
                 # Creando una tupla con los valores del INSERT
                 valores = (dataForm['nombre_empleado'], dataForm['apellido_empleado'], dataForm['apellido_materno'], dataForm['sexo_empleado'],
                            dataForm['telefono_empleado'], dataForm['email_empleado'], dataForm['profesion_empleado'], dataForm['entrada'], dataForm['salida'],
                            dataForm['curp'], dataForm['rfc'], dataForm['num_personal'], dataForm['num_plaza'], dataForm['categoria'], 
-                           dataForm['fecha_ingreso'], dataForm['antiguedad'], dataForm['nss'], dataForm['control_asistencia'], dataForm['tipo_empleado'], dataForm['calle'],
+                           dataForm['fecha_ingreso'], dataForm['antiguedad'], dataForm['nss'], dataForm['control_asistencia'], dataForm['tipo_empleado'], dataForm['otro_empleado'], dataForm['calle'],
                            dataForm['num'], dataForm['colonia'], dataForm['municipio'], dataForm['estado'], dataForm['cp'], dataForm['tipo_sangre'], dataForm['observaciones'], result_foto_perfil)
                 cursor.execute(sql, valores)
 
@@ -102,6 +101,7 @@ def sql_lista_empleadosBD():
                         e.nss,
                         e.control_asistencia,
                         e.tipo_empleado,
+                        e.otro_empleado,
                         e.calle,
                         e.num,
                         e.colonia,
@@ -157,6 +157,7 @@ def sql_detalles_empleadosBD(idEmpleado):
                         e.nss,
                         e.control_asistencia,
                         e.tipo_empleado,
+                        e.otro_empleado,
                         e.calle,
                         e.num,
                         e.colonia,
@@ -206,6 +207,7 @@ def empleadosReporte():
                         e.nss,
                         e.control_asistencia,
                         e.tipo_empleado,
+                        e.otro_empleado,
                         e.calle,
                         e.num,
                         e.colonia,
@@ -239,7 +241,7 @@ def generarReporteExcel():
     # Agregar la fila de encabezado con los títulos
     cabeceraExcel = ("Nombre", "Apellido_Paterno", "Apellido_Materno", "Sexo",
                      "Telefono", "Email", "Profesión", "Entrada", "Salida", "CURP", "RFC", "num_personal", 
-                     "num_plaza", "categoria", "fecha_ingreso", "antiguedad", "NSS", "control_asistencia","Tipo_empleado", "calle", 
+                     "num_plaza", "categoria", "fecha_ingreso", "antiguedad", "NSS", "control_asistencia","Tipo_empleado","Otros", "calle", 
                      "num", "colonia", "municipio", "estado", "C.P.", "tipo_sangre", "Observaciones", "Fecha de Ingreso")
 
     hoja.append(cabeceraExcel)
@@ -269,6 +271,7 @@ def generarReporteExcel():
         nss = registro['nss']
         control_asistencia = registro['control_asistencia']
         tipo_empleado = registro['tipo_empleado']
+        otro_empleado = registro['otro_empleado']
         calle = registro['calle']
         num = registro['num']
         colonia = registro['colonia']
@@ -282,7 +285,7 @@ def generarReporteExcel():
         # Agregar los valores a la hoja
         hoja.append((nombre_empleado, apellido_empleado, apellido_materno, sexo_empleado, telefono_empleado, email_empleado, profesion_empleado,
                      entrada, salida, curp, rfc, num_personal, num_plaza, categoria, fecha_ingreso, antiguedad, nss, 
-                     control_asistencia, tipo_empleado, calle, num, colonia, municipio, estado, cp, tipo_sangre, observaciones, fecha_registro))
+                     control_asistencia, tipo_empleado, otro_empleado, calle, num, colonia, municipio, estado, cp, tipo_sangre, observaciones, fecha_registro))
 
         # Itera a través de las filas y aplica el formato a la columna G
       #  for fila_num in range(2, hoja.max_row + 1):
@@ -333,6 +336,7 @@ def buscarEmpleadoBD(search):
                             e.nss,
                             e.control_asistencia,
                             e.tipo_empleado,
+                            e.otro_empleado,
                             e.calle,
                             e.num,
                             e.colonia,
@@ -385,6 +389,7 @@ def buscarEmpleadoUnico(id):
                             e.nss,
                             e.control_asistencia,
                             e.tipo_empleado,
+                            e.otro_empleado,
                             e.calle,
                             e.num,
                             e.colonia,
@@ -429,6 +434,7 @@ def procesar_actualizacion_form(data):
                 nss = data.form['nss']
                 control_asistencia = data.form['control_asistencia']
                 tipo_empleado = data.form['tipo_empleado']
+                otro_empleado = data.form['otro_empleado']
                 calle = data.form['calle']
                 num = data.form['num']
                 colonia = data.form['colonia']
@@ -468,6 +474,7 @@ def procesar_actualizacion_form(data):
                             nss = %s,
                             control_asistencia = %s,
                             tipo_empleado = %s,
+                            otro_empleado = %s,
                             calle = %s,
                             num = %s,
                             colonia = %s,
@@ -482,7 +489,7 @@ def procesar_actualizacion_form(data):
                     values = (nombre_empleado, apellido_empleado, apellido_materno, sexo_empleado,
                               telefono_empleado, email_empleado, profesion_empleado, entrada, salida, curp, 
                               rfc, num_personal, num_plaza, categoria, fecha_ingreso, antiguedad, 
-                              nss, control_asistencia, tipo_empleado, calle, num, colonia, municipio, estado, cp, 
+                              nss, control_asistencia, tipo_empleado, otro_empleado, calle, num, colonia, municipio, estado, cp, 
                               tipo_sangre, observaciones, fotoForm, id_empleado)
                 else:
                     querySQL = """
@@ -507,6 +514,7 @@ def procesar_actualizacion_form(data):
                             nss = %s,
                             control_asistencia = %s,
                             tipo_empleado = %s,
+                            otro_empleado = %s,
                             calle = %s,
                             num = %s,
                             colonia = %s,
@@ -520,7 +528,7 @@ def procesar_actualizacion_form(data):
                     values = (nombre_empleado, apellido_empleado, apellido_materno, sexo_empleado,
                               telefono_empleado, email_empleado, profesion_empleado, entrada, salida, 
                               curp, rfc,  num_personal, num_plaza, categoria, fecha_ingreso,
-                              antiguedad, nss, control_asistencia, tipo_empleado, calle, num, colonia, 
+                              antiguedad, nss, control_asistencia, tipo_empleado, otro_empleado, calle, num, colonia, 
                               municipio, estado, cp, tipo_sangre, observaciones, id_empleado)
 
                 cursor.execute(querySQL, values)

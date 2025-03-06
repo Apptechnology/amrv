@@ -1,6 +1,6 @@
 {% extends 'public/base_cpanel.html' %}
 <!--Cambiando el title-->
-{% block title %}AMRV | Registrar Empleado{% endblock %}
+{% block title %}AMRV | Información del Empleado{% endblock %}
 <!---->
 {% block customCSS %}
 <link
@@ -170,13 +170,27 @@
             <br />
             {{ detalle_empleado.control_asistencia}}
           </div>
-          <div class="col-md-4">
+        </div>
+
+
+            <div class="row mt-2">
+            <div class="col-md-4">
             <label for="tipo_empleado" class="form-label">
-              Tipo Empleado
+              Tipo de nombramiento:
             </label>
             <br />
-            {{ detalle_empleado.tipo_empleado}}
-          </div>
+            {{ detalle_empleado.tipo_empleado }}
+            </div>
+            {% if detalle_empleado.tipo_empleado == "Otro" %}
+           
+            <div class="col-md-6" id="otro_empleado_div">
+            <label for="otro_empleado" class="form-label">
+              Especifique el tipo de nombramiento:
+            </label>
+            <br />
+            {{ detalle_empleado.otro_empleado }}
+            {% endif %}
+            </div>
         </div>
         <h4 class="text-center mt-5 mb-3">DOMICILIO PARTICULAR </h4>
           
@@ -266,3 +280,6 @@
   <hr />
 </h2>
 {% endif %} {% endblock %}
+{% block customJS %}
+<script src="{{ url_for('static', filename ='assets/customJS/file.js') }}"></script>
+{% endblock %}

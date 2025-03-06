@@ -251,22 +251,31 @@
                     name="control_asistencia" 
                     required/>
                   </div>
+                  
                   <div class="col-md-4">
                     <label for="tipo_empleado" class="form-label">
-                      Puesto del empleado
+                      Tipo de nombramiento
                     </label>
-                    <select
-                      class="form-select"
-                      name="tipo_empleado"
-                      aria-label="Default select example">
-                      <option selected>Seleccione</option>
-                      <option value="DOCENTE">DOCENTE</option>
-                      <option value="ADMINISTRATIVO">ADMINISTRATIVO</option>
-                      <option value="INTERINATO">INTERINATO</option>
+                    <select 
+                    class="form-control" 
+                    id="tipo_empleado" 
+                    name="tipo_empleado" 
+                    aria-label="Default select example"
+                    required onchange="mostrarOtroCampo()">
+                      <option selected>Seleccione:</option>
+                      <option value="DOCENTE(Base)">DOCENTE(Base)</option>
+                      <option value="ADMINISTRATIVO(Base)">ADMINISTRATIVO(Base)</option>
+                      <option value="DOCENTE(Interinato)">DOCENTE(Interinato)</option>
+                      <option value="ADMINISTRATIVO(Interinato)">ADMINISTRATIVO(Interinato)</option>
+                      <option value="Otro">OTRO (Especifique)</option>
                     </select>
                   </div>
-              </div>  
-             
+              </div> 
+              <div class="col-md-4" id="otro_empleado_div" style="display: none;">
+                <label for="otro_empleado" class="form-label">Especifique el tipo de nombramiento:</label>
+                <input type="text" class="form-control" id="otro_empleado" name="otro_empleado">
+            </div>
+
             </div>
             <h3>Domicilio Particular</h3>
     
@@ -360,7 +369,7 @@
         <div class="row">
           <div class="col-md-12">
           <label for="observaciones" class="form-label">
-          Observaciones Médicas:
+          Observaciones:
           </label><br>
          <textarea 
           class="form-control"
